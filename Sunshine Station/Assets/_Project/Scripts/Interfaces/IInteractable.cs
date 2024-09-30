@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace Sunshine
 {
+    // THIS MIGHT BE TOTALLY OBSOLETE
+    // The way this XR Interaction system works, it might be all built in.
     public interface IInteractable
     {
         /// <summary>
