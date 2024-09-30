@@ -70,3 +70,22 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Layla Mod
+# Need to not ignore the changes made to the
+# XR Device Simulator script, which is in the Library (ignored).
+# God bless the person who wrote this https://theapache64.github.io/git-do-not-ignore/
+![Ll]ibrary/
+[Ll]ibrary/*
+![Ll]ibrary/PackageCache/
+[Ll]ibrary/PackageCache/*
+[Ll]ibrary/PackageCache/com.unity.xr.interaction.toolkit@2.6.3/*
+![Ll]ibrary/PackageCache/com.unity.xr.interaction.toolkit@2.6.3/
+[Ll]ibrary/PackageCache/com.unity.xr.interaction.toolkit@2.6.3/Runtime/*
+![Ll]ibrary/PackageCache/com.unity.xr.interaction.toolkit@2.6.3/Runtime/
+[Ll]ibrary/PackageCache/com.unity.xr.interaction.toolkit@2.6.3/Runtime/Inputs/*
+![Ll]ibrary/PackageCache/com.unity.xr.interaction.toolkit@2.6.3/Runtime/Inputs/
+[Ll]ibrary/PackageCache/com.unity.xr.interaction.toolkit@2.6.3/Runtime/Inputs/Simulation/*
+![Ll]ibrary/PackageCache/com.unity.xr.interaction.toolkit@2.6.3/Runtime/Inputs/Simulation/
+![Ll]ibrary/PackageCache/com.unity.xr.interaction.toolkit@2.6.3/Runtime/Inputs/Simulation/XRDeviceSimulator.cs
+![Ll]ibrary/PackageCache/com.unity.xr.interaction.toolkit@2.6.3/Runtime/Inputs/Simulation/XRDeviceSimulator.cs.meta
