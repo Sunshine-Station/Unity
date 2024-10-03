@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sunshine
@@ -7,16 +5,18 @@ namespace Sunshine
     [RequireComponent(typeof(Animator))]
     public class AnimTrigger : MonoBehaviour
     {
-        private Animator _animator;
+        [SerializeField] private Animator _targetAnimator;
 
         private void Start()
         {
-            _animator = GetComponent<Animator>();
+            if (_targetAnimator == null)
+                { print($"No trigger assigned to {name}'s ToggleAnimator"); }
         }
 
         public void Trigger(string nameOfTrigger)
         {
-            _animator.SetTrigger(nameOfTrigger);
+            print ($"Setting trigger on { name }");
+            _targetAnimator.SetTrigger(nameOfTrigger);
         }
     }
 }

@@ -4,27 +4,33 @@ using UnityEngine;
 
 namespace Sunshine
 {
-    [RequireComponent(typeof(AnimTrigger))]
+    [RequireComponent(typeof(Animator))]
     public class ToggleAnimator : MonoBehaviour
     {
         [SerializeField] string _onTriggerName;
         [SerializeField] string _offTriggerName;
 
-        private AnimTrigger _trigger;
+        private Animator _animator;
+
+        bool _isOn;
 
         private void Start()
         {
-            _trigger = GetComponent<AnimTrigger>();
+            if (!TryGetComponent(out _animator))
+            {
+                print ($"No animator found on { name }");
+            }
         }
 
-        public void ToggleOn()
+        public void Toggle()
         {
-            _trigger.Trigger(_onTriggerName);
-        }
+            string toggleMessage = _isOn ? "off" : "on";
+            string toggleAction = _isOn ? _offTriggerName : _onTriggerName;
 
-        public void ToggleOff()
-        {
-            _trigger.Trigger(_offTriggerName);
+            print ($"{ name } is toggling {toggleMessage}");
+
+            _animator.SetTrigger(toggleAction);
+            _isOn = !_isOn;
         }
     }
 }
