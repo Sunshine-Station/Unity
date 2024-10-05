@@ -17,7 +17,7 @@ namespace Sunshine
         void OnPlayerEnterRange();
 
         /// <summary>
-        /// To be called when the player leaves interaction range of the interactable object. Use of this function would require the Player to store the interactable Object when it's first detected, so it can still be accessed after leaving the trigger collider
+        /// To be called when the player leaves interaction range of the _storedInteraction object. Use of this function would require the Player to store the _storedInteraction Object when it's first detected, so it can still be accessed after leaving the trigger collider
         /// </summary>
         void OnPlayerExitRange();
     }
