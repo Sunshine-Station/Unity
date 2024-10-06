@@ -7,7 +7,7 @@ namespace Sunshine
         /// <summary>
         /// To be called when the player presses the interact key.
         /// </summary>
-        void Interact();
+        void Interact(Hand hand);
 
         /// <summary>
         /// To be called as soon as the player detects an IProximityRtigger from its interaction-checking function or component.

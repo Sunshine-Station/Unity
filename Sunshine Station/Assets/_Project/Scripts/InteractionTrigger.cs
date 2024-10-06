@@ -1,46 +1,53 @@
+// layla
 using UnityEngine;
-using System;
 using UnityEngine.Events;
 
 namespace Sunshine
 {
+    [RequireComponent(typeof(Collider))]
     public class InteractionTrigger : MonoBehaviour, IInteractable
     {
-        public Action onPlayerEnter;
-        public Action onPlayerExit;
-        public Action onInteract;
+        [Header("Events")]
+        public UnityEvent OnControllerEnter;
+        public UnityEvent OnControllerExit;
+        public UnityEvent OnInteract;
 
-        private bool _inRange;
+        private bool _controllerHere;
 
         private void Update()
         {
-            if (_inRange)
+            if (_controllerHere)
             {
                 print ("yr here");
             }
         }
 
-        public void Interact()
+        public void Interact(Hand hand)
         {
-            print ($"Interact called on { name }");
+            print ($"{ hand } called Interact on { name }");
 
-            onInteract.Invoke();
+            OnInteract?.Invoke();
         }
 
         public void ControllerEnter(Hand hand)
         {
-            _inRange = true;
+            // This means that if both controllers are there,
+            // and then one leaves, one of them has to reenter the collider
+            // to trigger it... I'm leaving it off for now.
+            //if (_controllerHere) { return; }
+
+            _controllerHere = true;
             print($"{ hand } enetered interaction range of { name }");
 
-            onPlayerEnter.Invoke();
+            OnControllerEnter?.Invoke();
         }
 
         public void ControllerExit(Hand hand)
         {
-            _inRange = false;
+            _controllerHere = false;
             print($"{ hand } left interaction range of {name}");
 
-            onPlayerExit.Invoke();
+            OnControllerExit?.Invoke();
         }
     }
 }

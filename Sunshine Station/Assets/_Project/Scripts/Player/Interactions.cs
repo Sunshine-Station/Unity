@@ -49,7 +49,7 @@ namespace Sunshine
         /// </summary>
         private void TryInteract(InputAction.CallbackContext context)
         {
-            _storedInteraction?.Interact();
+            _storedInteraction?.Interact(_hand);
         }
 
         /// <summary>
@@ -70,7 +70,9 @@ namespace Sunshine
 
         private void OnTriggerEnter(Collider other)
         {
-            IInteractable interaction = other.GetComponent<IInteractable>();
+            // GetCompInParent checks the object first, then checks parents in order. This way,
+            // the interface doesn't necessarily have to reside on the trigger collider object.
+            IInteractable interaction = other.GetComponentInParent<IInteractable>();
 
             if (interaction == null) { return; }
 
@@ -87,7 +89,9 @@ namespace Sunshine
 
         private void OnTriggerExit(Collider other)
         {
-            IInteractable interaction = other.gameObject.GetComponent<IInteractable>();
+            // GetCompInParent checks the object first, then checks parents in order. This way,
+            // the interface doesn't necessarily have to reside on the trigger collider object.
+            IInteractable interaction = other.gameObject.GetComponentInParent<IInteractable>();
 
             // No matter what, if we're leaving this collider,
             // we want to call this on it.

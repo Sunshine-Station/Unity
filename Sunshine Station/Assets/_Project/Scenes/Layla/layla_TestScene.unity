@@ -1913,7 +1913,6 @@ GameObject:
   - component: {fileID: 628520765}
   - component: {fileID: 625169341}
   - component: {fileID: 626151253}
-  - component: {fileID: 635655861}
   - component: {fileID: 621977151}
   m_Layer: 0
   m_Name: door_2_right
@@ -1933,7 +1932,6 @@ GameObject:
   - component: {fileID: 628513213}
   - component: {fileID: 625100437}
   - component: {fileID: 626345005}
-  - component: {fileID: 635651525}
   - component: {fileID: 621944751}
   m_Layer: 0
   m_Name: door_2_left
@@ -1999,49 +1997,7 @@ Animator:
   m_GameObject: {fileID: 628159063}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4195026f5c9772c40a9e4ebd5d4c6e08, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!95 &635651525
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628354185}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: c4e7e92b29579c940be181092de59dc1, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!95 &635655861
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628299653}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 791a433f9653b904dade303d1345882f, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 68f2514f1d4f1a44f9ae1b3c4c369181, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2508,7 +2464,6 @@ GameObject:
   m_Component:
   - component: {fileID: 835492338}
   - component: {fileID: 835492340}
-  - component: {fileID: 835492339}
   m_Layer: 6
   m_Name: Trigger
   m_TagString: Untagged
@@ -2531,18 +2486,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 930227065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &835492339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 835492337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb1b46e6360aef24db5fb285daad8db2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &835492340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3234,6 +3177,7 @@ GameObject:
   - component: {fileID: 930227065}
   - component: {fileID: 930227069}
   - component: {fileID: 930227068}
+  - component: {fileID: 930227070}
   m_Layer: 6
   m_Name: INTERACTABLE CONTAINER
   m_TagString: Untagged
@@ -3307,6 +3251,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930227064}
   m_Mesh: {fileID: 4300000, guid: 13f31c8427fd865429e533cea99b63c2, type: 3}
+--- !u!114 &930227070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930227064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1b46e6360aef24db5fb285daad8db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnControllerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 930227068}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_material
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: e305453a48fa58446882f6671dfa0d58, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnControllerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 930227068}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_material
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 10de6384af0c3b54e8166f9c3f936e88, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 930227068}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_material
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 5476ae29e2e50194abce19e5cacce575, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &977776865
 GameObject:
   m_ObjectHideFlags: 0
@@ -13275,7 +13276,6 @@ GameObject:
   m_Component:
   - component: {fileID: 495650969594920341}
   - component: {fileID: 6282065170554478644}
-  - component: {fileID: 4917187794581595406}
   m_Layer: 6
   m_Name: Trigger
   m_TagString: Untagged
@@ -15968,18 +15968,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4917187794581595406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877358916756415815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb1b46e6360aef24db5fb285daad8db2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &5082342463671563350
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16295,6 +16283,7 @@ GameObject:
   - component: {fileID: 5426693857120947756}
   - component: {fileID: 440551615636282549}
   - component: {fileID: 6202987304407466354}
+  - component: {fileID: 6202987304407466355}
   m_Layer: 0
   m_Name: console
   m_TagString: Untagged
@@ -16314,8 +16303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ea0879be55f5f4086f7bb91ee736a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactionTrigger: {fileID: 4917187794581595406}
-  WakeUp:
+  OnWakeUp:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9137054809005530942}
@@ -16330,10 +16318,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  GoToSleep:
+  OnGoToSleep:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9137054809005530942}
+      - m_Target: {fileID: 5426693857120947756}
         m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
         m_MethodName: set_material
         m_Mode: 2
@@ -16345,12 +16333,69 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OpenDoors:
+  OnInteract:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2002544444}
         m_TargetAssemblyTypeName: Sunshine.ToggleAnimator, Assembly-CSharp
         m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6202987304407466355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202987304407466353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1b46e6360aef24db5fb285daad8db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnControllerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6202987304407466354}
+        m_TargetAssemblyTypeName: Sunshine.ComputerTerminal, Assembly-CSharp
+        m_MethodName: WakeUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnControllerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6202987304407466354}
+        m_TargetAssemblyTypeName: Sunshine.ComputerTerminal, Assembly-CSharp
+        m_MethodName: GoToSleep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6202987304407466354}
+        m_TargetAssemblyTypeName: Sunshine.ComputerTerminal, Assembly-CSharp
+        m_MethodName: Interact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

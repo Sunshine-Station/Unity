@@ -1,5 +1,4 @@
 // layla
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,46 +6,24 @@ namespace Sunshine
 {
     public class ComputerTerminal : MonoBehaviour
     {
-        [Header("Trigger")]
-        [SerializeField] private InteractionTrigger _interactionTrigger;
-
         [Header("Interaction Events")]
-        [SerializeField] private UnityEvent WakeUp;
-        [SerializeField] private UnityEvent GoToSleep;
-        [SerializeField] private UnityEvent OpenDoors;
+        [SerializeField] private UnityEvent OnWakeUp;
+        [SerializeField] private UnityEvent OnGoToSleep;
+        [SerializeField] private UnityEvent OnInteract;
 
-
-        private void Awake()
+        public void WakeUp()
         {
+            OnWakeUp.Invoke();
         }
 
-        private void OnEnable()
+        public void GoToSleep()
         {
-            _interactionTrigger.onPlayerEnter += onWakeUp;
-            _interactionTrigger.onPlayerExit += onGoToSleep;
-            _interactionTrigger.onInteract += onOpenDoors;
+            OnWakeUp?.Invoke();
         }
 
-        private void OnDisable()
+        public void Interact()
         {
-            _interactionTrigger.onPlayerEnter -= onWakeUp;
-            _interactionTrigger.onPlayerExit -= onGoToSleep;
-            _interactionTrigger.onInteract -= onOpenDoors;
-        }
-
-        private void onWakeUp()
-        {
-            WakeUp?.Invoke();
-        }
-
-        private void onGoToSleep()
-        {
-            GoToSleep?.Invoke();
-        }
-
-        private void onOpenDoors()
-        {
-            OpenDoors?.Invoke();
+            OnInteract?.Invoke();
         }
     }
 }
