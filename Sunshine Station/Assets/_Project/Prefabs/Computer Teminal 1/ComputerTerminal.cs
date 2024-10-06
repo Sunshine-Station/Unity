@@ -18,7 +18,7 @@ namespace Sunshine
 
         public void GoToSleep()
         {
-            OnWakeUp?.Invoke();
+            OnGoToSleep?.Invoke();
         }
 
         public void Interact()

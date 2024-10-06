@@ -97,6 +97,11 @@ namespace Sunshine
             // we want to call this on it.
             interaction?.ControllerExit(_hand);
 
+            if (_storedInteraction == interaction)
+            {
+                _storedInteraction = null;
+            }
+
             // If we happen to still be near something, then
             redetect();
         }

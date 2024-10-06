@@ -3194,7 +3194,7 @@ Transform:
   m_GameObject: {fileID: 930227064}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.504, y: 1.8, z: 2.181}
+  m_LocalPosition: {x: 3.504, y: 1.8, z: 2}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8185,7 +8185,7 @@ Transform:
   m_GameObject: {fileID: 1877358916756415815}
   serializedVersion: 2
   m_LocalRotation: {x: 0.19509031, y: 0, z: 0, w: 0.98078537}
-  m_LocalPosition: {x: -0, y: 2.25, z: 0.25}
+  m_LocalPosition: {x: -0, y: 2, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -16142,8 +16142,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.92387956, z: 0, w: 0.38268343}
   m_LocalPosition: {x: 1.542, y: -4, z: -5.019}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.75, y: 1.25, z: 0.75}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5466169628042550620}
   - {fileID: 495650969594920341}
@@ -16321,7 +16321,7 @@ MonoBehaviour:
   OnGoToSleep:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5426693857120947756}
+      - m_Target: {fileID: 9137054809005530942}
         m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
         m_MethodName: set_material
         m_Mode: 2
@@ -16424,7 +16424,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 0.8, z: 1}
+  m_Size: {x: 1.5, y: 0.25, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &6598815580273807200
 Transform:
@@ -16454,8 +16454,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useCustomControllerPositions: 1
-  leftControllerPos: {x: -0.5, y: -0.5, z: 1}
-  rightControllerPos: {x: 0.5, y: -0.5, z: 1}
+  leftControllerPos: {x: -0.5, y: -0.6, z: 1}
+  rightControllerPos: {x: 0.5, y: -0.6, z: 1}
   m_DeviceSimulatorActionAsset: {fileID: -944628639613478452, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
   m_ControllerActionAsset: {fileID: -944628639613478452, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
   m_KeyboardXTranslateAction: {fileID: -2435995061748527091, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
@@ -16561,7 +16561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6604584763174022003
 GameObject:
   m_ObjectHideFlags: 0
