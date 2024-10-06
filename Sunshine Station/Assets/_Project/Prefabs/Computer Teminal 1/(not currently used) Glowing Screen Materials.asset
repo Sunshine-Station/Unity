@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ecc381ad6e690346824512e42b551d6, type: 3}
+  m_Name: (not currently used) Glowing Screen Materials
+  m_EditorClassIdentifier: 
+  _materials:
+  - name: On
+    mat: {fileID: 2100000, guid: 5476ae29e2e50194abce19e5cacce575, type: 2}
+  - name: Off
+    mat: {fileID: 2100000, guid: 2ce01831e9f3ae441bb48623e5fbe0c0, type: 2}

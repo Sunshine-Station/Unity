@@ -1,26 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit.Inputs;
+using System;
+using UnityEngine.Events;
 
 namespace Sunshine
 {
     public class InteractionTrigger : MonoBehaviour, IInteractable
     {
+        public Action onPlayerEnter;
+        public Action onPlayerExit;
+        public Action onInteract;
+
         private bool _inRange;
-
-        private void Awake()
-        {
-        }
-
-        private void OnEnable()
-        {
-        }
-
-        private void OnDisable()
-        {
-        }
 
         private void Update()
         {
@@ -32,19 +22,25 @@ namespace Sunshine
 
         public void Interact()
         {
-            print ("pushy button");
+            print ($"Interact called on { name }");
+
+            onInteract.Invoke();
         }
 
-        public void OnPlayerEnterRange()
+        public void ControllerEnter(Hand hand)
         {
             _inRange = true;
-            print("hi");
+            print($"{ hand } enetered interaction range of { name }");
+
+            onPlayerEnter.Invoke();
         }
 
-        public void OnPlayerExitRange()
+        public void ControllerExit(Hand hand)
         {
             _inRange = false;
-            print("bye");
+            print($"{ hand } left interaction range of {name}");
+
+            onPlayerExit.Invoke();
         }
     }
 }

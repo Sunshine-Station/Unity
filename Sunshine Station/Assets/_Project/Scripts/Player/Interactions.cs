@@ -3,10 +3,10 @@ using UnityEngine.InputSystem;
 
 namespace Sunshine
 {
+    public enum Hand { LEFT, RIGHT };
+
     public class Interactions : MonoBehaviour
     {
-        private enum Hand { LEFT, RIGHT };
-
         [SerializeField] private Hand _hand;
         [SerializeField] private XRIDefaultInputActions _inputActions;
         InputAction _interactButton;
@@ -18,6 +18,7 @@ namespace Sunshine
         private void Awake()
         {
             _inputActions = new XRIDefaultInputActions();
+            _collider = GetComponent<Collider>();
         }
 
         private void OnEnable()
@@ -76,12 +77,12 @@ namespace Sunshine
             // If an interaction is already stored, we boot it. 
             if (_storedInteraction != null)
             {
-                _storedInteraction.OnPlayerExitRange();
+                _storedInteraction.ControllerExit(_hand);
                 _storedInteraction = null;
             }
 
             _storedInteraction = interaction;
-            _storedInteraction.OnPlayerEnterRange();
+            _storedInteraction.ControllerEnter(_hand);
         }
 
         private void OnTriggerExit(Collider other)
@@ -90,7 +91,7 @@ namespace Sunshine
 
             // No matter what, if we're leaving this collider,
             // we want to call this on it.
-            interaction?.OnPlayerExitRange();
+            interaction?.ControllerExit(_hand);
 
             // If we happen to still be near something, then
             redetect();
