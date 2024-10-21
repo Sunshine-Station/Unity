@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Project/Scenes/Layla/layla_TestScene.unity
+    guid: f9ccc7aad1534a84ab490d33a27b5c5a
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: c03be1088b135134697081188a330132, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 0df19336d59641247b6ad197ae8c8f3b, type: 2}
