@@ -8670,6 +8670,7 @@ GameObject:
   - component: {fileID: 277428396}
   - component: {fileID: 277428395}
   - component: {fileID: 277428394}
+  - component: {fileID: 277428400}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -8684,7 +8685,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277428393}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de488d1a302b176499baa3edf06e8927, type: 3}
   m_Name: 
@@ -8799,6 +8800,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1720764413}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &277428400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277428393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a3082049e289c41b32ae4c7f3c585c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TurnOn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4038611778892249934}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  TurnOff:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4038611778892249934}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  WhileOn:
+    m_PersistentCalls:
+      m_Calls: []
+  WhileOff:
+    m_PersistentCalls:
+      m_Calls: []
+  _startOn: 1
+  TEST_ONLY_Toggle: 0
 --- !u!1 &279360376
 GameObject:
   m_ObjectHideFlags: 0
@@ -30580,27 +30631,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3171063245315808664, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3171063245315808664, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 277428393}
+      objectReference: {fileID: 277428400}
     - target: {fileID: 3171063245315808664, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3171063245315808664, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: Toggle
       objectReference: {fileID: 0}
     - target: {fileID: 3171063245315808664, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: 
+      value: Sunshine.ToggleableObject, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3171063245315808664, guid: b35370df358011f42b964e60d2b6a271, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3171063245315808664, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8103233666619721485, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: m_Name
@@ -57790,6 +57845,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 909315764}
+    - target: {fileID: 5377523269515609168, guid: 44c07d13c807cd34696dd1a191e9601b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6910192338887014704, guid: 44c07d13c807cd34696dd1a191e9601b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -57875,6 +57934,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44c07d13c807cd34696dd1a191e9601b, type: 3}
+--- !u!223 &4038611778892249934 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 2993355628378598224, guid: 44c07d13c807cd34696dd1a191e9601b, type: 3}
+  m_PrefabInstance: {fileID: 4038611778892249933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &4054335702934151248
 MeshCollider:
   m_ObjectHideFlags: 0
