@@ -1397,7 +1397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8103233666619721485, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: m_Name
-      value: console (2)
+      value: console_c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5251,7 +5251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8103233666619721485, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: m_Name
-      value: console (1)
+      value: console_D
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9279,7 +9279,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 152624, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_Name
-      value: big_screen (1)
+      value: big_screen_D
       objectReference: {fileID: 0}
     - target: {fileID: 490306, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16946,7 +16946,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 152624, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_Name
-      value: big_screen (2)
+      value: big_screen_c
       objectReference: {fileID: 0}
     - target: {fileID: 490306, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17909,7 +17909,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 152624, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_Name
-      value: big_screen (2)
+      value: big_screen_b
       objectReference: {fileID: 0}
     - target: {fileID: 490306, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28480,7 +28480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8103233666619721485, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: m_Name
-      value: console (1)
+      value: console_B
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29976,7 +29976,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 152624, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_Name
-      value: big_screen (1)
+      value: big_screen_C
       objectReference: {fileID: 0}
     - target: {fileID: 490306, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31099,7 +31099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8103233666619721485, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: m_Name
-      value: console (2)
+      value: console_d
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31722,7 +31722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8103233666619721485, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: m_Name
-      value: console (2)
+      value: console_b
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34804,7 +34804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8103233666619721485, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: m_Name
-      value: console (2)
+      value: console_a
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38729,7 +38729,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 152624, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_Name
-      value: big_screen (1)
+      value: big_screen_B
       objectReference: {fileID: 0}
     - target: {fileID: 490306, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40192,7 +40192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8103233666619721485, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: m_Name
-      value: console (1)
+      value: console_A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -41357,7 +41357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8103233666619721485, guid: b35370df358011f42b964e60d2b6a271, type: 3}
       propertyPath: m_Name
-      value: console (1)
+      value: console_C
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -41767,7 +41767,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 152624, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_Name
-      value: big_screen (1)
+      value: big_screen_A
       objectReference: {fileID: 0}
     - target: {fileID: 490306, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_LocalPosition.x
@@ -42908,7 +42908,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 152624, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_Name
-      value: big_screen (2)
+      value: big_screen_a
       objectReference: {fileID: 0}
     - target: {fileID: 490306, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47513,7 +47513,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 152624, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_Name
-      value: big_screen (2)
+      value: big_screen_d
       objectReference: {fileID: 0}
     - target: {fileID: 490306, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
       propertyPath: m_LocalPosition.x
