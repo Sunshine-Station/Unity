@@ -1,8 +1,4 @@
-using System;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
-using UnityEngine.UI;
-using Image = UnityEngine.UI.Image;
 //all of this is temporary i am very tired
 namespace Sunshine
 {
