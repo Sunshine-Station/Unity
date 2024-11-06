@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 namespace Sunshine
 {
@@ -11,7 +12,7 @@ namespace Sunshine
         [SerializeField] private XRIDefaultInputActions _inputActions;
         InputAction _interactButton;
 
-        private IInteractable _storedInteraction;
+        private List<IInteractable> _storedInteractions = new List<IInteractable>();
 
         private Collider _collider;
 
@@ -44,12 +45,15 @@ namespace Sunshine
         }
 
         /// <summary>
-        /// Tries to call Interact() on the stored interaction.
+        /// Tries to call Interact() on the 
+        /// most recent stored interaction.
         /// If the stored interaction is null, nothing happens.
         /// </summary>
         private void TryInteract(InputAction.CallbackContext context)
         {
-            _storedInteraction?.Interact(_hand);
+            int lastIndex = _storedInteractions.Count - 1;
+
+            _storedInteractions[lastIndex]?.Interact(_hand);
         }
 
         /// <summary>
@@ -76,15 +80,11 @@ namespace Sunshine
 
             if (interaction == null) { return; }
 
-            // If an interaction is already stored, we boot it. 
-            if (_storedInteraction != null)
-            {
-                _storedInteraction.ControllerExit(_hand);
-                _storedInteraction = null;
-            }
+            // Add this interaction to the list.
+            _storedInteractions.Add(interaction);
 
-            _storedInteraction = interaction;
-            _storedInteraction.ControllerEnter(_hand);
+            // Tell it we're here and what hand we are.
+            interaction.ControllerEnter(_hand);
         }
 
         private void OnTriggerExit(Collider other)
@@ -93,13 +93,14 @@ namespace Sunshine
             // the interface doesn't necessarily have to reside on the trigger collider object.
             IInteractable interaction = other.gameObject.GetComponentInParent<IInteractable>();
 
-            // No matter what, if we're leaving this collider,
-            // we want to call this on it.
+            // Tell it we're leaving and what hand we are.
             interaction?.ControllerExit(_hand);
 
-            if (_storedInteraction == interaction)
+            // If it's in the list of stored
+            // interactions, remove it.
+            if (_storedInteractions.Contains(interaction))
             {
-                _storedInteraction = null;
+                _storedInteractions.Remove(interaction);
             }
 
             // If we happen to still be near something, then
