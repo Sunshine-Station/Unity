@@ -70,8 +70,23 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
         /// </summary>
         const float k_CameraMaxXAngle = 80f;
 
+        // ============= HUGE WARNING ============= FROM LAYLA =============
+        // ============= HUGE WARNING ============= FROM LAYLA =============
+        // ============= HUGE WARNING ============= FROM LAYLA =============
+        [Header("Layla Custom Fields - Controllers")]
+        [SerializeField] private bool useCustomControllerPositions;
+        [SerializeField] private Vector3 leftControllerPos;
+        [SerializeField] private Vector3 rightControllerPos;
+        // I modified these values so that the controllers aren't right on top of your fucking face while simulating input.
+        // The places where I've replaced the original code with if statements that check <useCustomControllerPositions> are marked as regions labeled "LAYLA MOD"
+
+        // Original values:
         static readonly Vector3 s_LeftDeviceDefaultInitialPosition = new Vector3(-0.1f, -0.05f, 0.3f);
         static readonly Vector3 s_RightDeviceDefaultInitialPosition = new Vector3(0.1f, -0.05f, 0.3f);
+
+        // ============= HUGE WARNING ============= FROM LAYLA ==============
+        // ============= HUGE WARNING ============= FROM LAYLA =============
+        // ============= HUGE WARNING ============= FROM LAYLA =============
 
         /// <summary>
         /// The coordinate space in which to operate.
@@ -131,7 +146,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
             /// No target device to update.
             /// </summary>
             None = 0,
-            
+
             /// <summary>
             /// No target device, behaving as an FPS controller.
             /// </summary>
@@ -307,7 +322,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
                 m_Performed?.Invoke(this, context);
             }
         }
-        
+
         [SerializeField]
         [Tooltip("Input Action asset containing controls for the simulator itself. Unity will automatically enable and disable it with this component.")]
         InputActionAsset m_DeviceSimulatorActionAsset;
@@ -549,7 +564,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
                 SubscribeCycleDevicesAction();
             }
         }
-        
+
         [SerializeField]
         [Tooltip("The Input System Action used to stop all manipulation. Must be a Button Control.")]
         InputActionReference m_StopManipulationAction;
@@ -1095,7 +1110,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
                 SubscribeSecondaryTouchAction();
             }
         }
-        
+
         [SerializeField]
         [Tooltip("Input Action asset containing controls for the simulated hands. Unity will automatically enable and disable it as needed.")]
         InputActionAsset m_HandActionAsset;
@@ -1480,7 +1495,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
             get => m_RightControllerTrackingState;
             set => m_RightControllerTrackingState = value;
         }
-        
+
         [SerializeField]
         [Tooltip("Whether the left hand should report the pose as fully tracked or unavailable/inferred.")]
         bool m_LeftHandIsTracked = true;
@@ -1551,12 +1566,12 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
         /// Whether the simulator is manipulating the Right Controller.
         /// </summary>
         public bool manipulatingRightController => m_DeviceMode == DeviceMode.Controller && manipulatingRightDevice;
-        
+
         /// <summary>
         /// Whether the simulator is manipulating the Left Hand.
         /// </summary>
         public bool manipulatingLeftHand => m_DeviceMode == DeviceMode.Hand && manipulatingLeftDevice;
-        
+
         /// <summary>
         /// Whether the simulator is manipulating the Right Hand.
         /// </summary>
@@ -1708,7 +1723,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
                 else
                     Debug.LogWarning($"No Controller Action Asset has been defined for the XR Device Simulator, using a default one: {m_ControllerActionAsset.name}", m_ControllerActionAsset);
             }
-            
+
             if (m_HandActionAsset == null && m_SimulatedHandExpressions.Count > 0)
             {
                 if (m_SimulatedHandExpressions[0].toggleAction != null)
@@ -1730,10 +1745,23 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
             m_RightHandState.Reset();
 
             // Adding offset to the controller/hand when starting simulation to move them away from the Camera position
-            m_LeftControllerState.devicePosition = s_LeftDeviceDefaultInitialPosition;
-            m_RightControllerState.devicePosition = s_RightDeviceDefaultInitialPosition;
-            m_LeftHandState.position = s_LeftDeviceDefaultInitialPosition;
-            m_RightHandState.position = s_RightDeviceDefaultInitialPosition;
+            #region LAYLA MOD
+            if (useCustomControllerPositions)
+            {
+                m_LeftControllerState.devicePosition = leftControllerPos;
+                m_RightControllerState.devicePosition = rightControllerPos;
+                m_LeftHandState.position = leftControllerPos;
+                m_RightHandState.position = rightControllerPos;
+            }
+            else
+            {
+                //ORIGINAL
+                m_LeftControllerState.devicePosition = s_LeftDeviceDefaultInitialPosition;
+                m_RightControllerState.devicePosition = s_RightDeviceDefaultInitialPosition;
+                m_LeftHandState.position = s_LeftDeviceDefaultInitialPosition;
+                m_RightHandState.position = s_RightDeviceDefaultInitialPosition;
+            }
+            #endregion
 
             if (m_DeviceSimulatorUI != null)
                 Instantiate(m_DeviceSimulatorUI, transform);
@@ -1779,7 +1807,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
             if (XRSimulationLoaderEnabledForEditorPlayMode())
             {
                 if (m_XROrigin != null || ComponentLocatorUtility<XROrigin>.TryFindComponent(out m_XROrigin))
-                {   
+                {                 
                     if (m_XROrigin.CameraYOffset != 0)
                     {
                         var offset = new Vector3(0f, m_XROrigin.CameraYOffset, 0f);
@@ -2236,8 +2264,20 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
                 {
                     // Controllers
                     // We reset both position and rotation in this FPS mode, so axis constraint is ignored
-                    m_LeftControllerState.devicePosition = s_LeftDeviceDefaultInitialPosition;
-                    m_RightControllerState.devicePosition = s_RightDeviceDefaultInitialPosition;
+
+                    #region LAYLA MOD
+                    if (useCustomControllerPositions)
+                    {
+                        m_LeftControllerState.devicePosition = leftControllerPos;
+                        m_RightControllerState.devicePosition = rightControllerPos;
+                    }
+                    else
+                    {
+                        //ORIGINAL
+                        m_LeftControllerState.devicePosition = s_LeftDeviceDefaultInitialPosition;
+                        m_RightControllerState.devicePosition = s_RightDeviceDefaultInitialPosition;
+                    }
+                    #endregion
 
                     m_LeftControllerEuler = Vector3.zero;
                     m_LeftControllerState.deviceRotation = Quaternion.Euler(m_LeftControllerEuler);
@@ -2246,8 +2286,18 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
                     m_RightControllerState.deviceRotation = Quaternion.Euler(m_RightControllerEuler);
 
                     // Hands
-                    m_LeftHandState.position = s_LeftDeviceDefaultInitialPosition;
-                    m_RightHandState.position = s_RightDeviceDefaultInitialPosition;
+                    #region LAYLA MOD
+                    if (useCustomControllerPositions)
+                    {
+                        m_LeftHandState.position = leftControllerPos;
+                        m_RightHandState.position = rightControllerPos;
+                    }
+                    else
+                    {
+                        m_LeftHandState.position = s_LeftDeviceDefaultInitialPosition;
+                        m_RightHandState.position = s_RightDeviceDefaultInitialPosition;
+                    }
+                    #endregion
 
                     m_LeftHandState.euler = Vector3.zero;
                     m_LeftHandState.rotation = Quaternion.Euler(m_LeftHandState.euler);
@@ -2526,7 +2576,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
                 }
             }
 #endif
-            }
+        }
 
         /// <summary>
         /// Process input from the user and update the state of manipulated controller device(s)
@@ -2840,7 +2890,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
 
             return false;
         }
-#endif        
+#endif
 
         /// <summary>
         /// Gets a <see cref="Vector3"/> that can be multiplied component-wise with another <see cref="Vector3"/>
@@ -3190,7 +3240,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
             // Cycle logic is FPS > LeftDevice > RightDevice
             if (targetedDeviceInput == TargetedDevices.None)
                 targetedDeviceInput = TargetedDevices.FPS;
-            else if (targetedDeviceInput ==TargetedDevices.FPS)
+            else if (targetedDeviceInput == TargetedDevices.FPS)
                 targetedDeviceInput = TargetedDevices.LeftDevice;
             else if (targetedDeviceInput.HasDevice(TargetedDevices.LeftDevice))
                 targetedDeviceInput = TargetedDevices.RightDevice;
@@ -3230,9 +3280,9 @@ namespace UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation
 
         void OnToggleDevicePositionTargetPerformed(InputAction.CallbackContext context) => axis2DTargets = (axis2DTargets & Axis2DTargets.Position) != 0 ? Axis2DTargets.None : Axis2DTargets.Position;
 
-        void OnTogglePrimary2DAxisTargetPerformed(InputAction.CallbackContext context) => axis2DTargets = (axis2DTargets & Axis2DTargets.Primary2DAxis) != 0 ? Axis2DTargets.None :  Axis2DTargets.Primary2DAxis;
+        void OnTogglePrimary2DAxisTargetPerformed(InputAction.CallbackContext context) => axis2DTargets = (axis2DTargets & Axis2DTargets.Primary2DAxis) != 0 ? Axis2DTargets.None : Axis2DTargets.Primary2DAxis;
 
-        void OnToggleSecondary2DAxisTargetPerformed(InputAction.CallbackContext context) => axis2DTargets = (axis2DTargets & Axis2DTargets.Secondary2DAxis) != 0 ? Axis2DTargets.None :  Axis2DTargets.Secondary2DAxis;
+        void OnToggleSecondary2DAxisTargetPerformed(InputAction.CallbackContext context) => axis2DTargets = (axis2DTargets & Axis2DTargets.Secondary2DAxis) != 0 ? Axis2DTargets.None : Axis2DTargets.Secondary2DAxis;
 
         void OnAxis2DPerformed(InputAction.CallbackContext context) => m_Axis2DInput = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
         void OnAxis2DCanceled(InputAction.CallbackContext context) => m_Axis2DInput = Vector2.zero;
