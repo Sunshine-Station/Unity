@@ -20,7 +20,14 @@ namespace Sunshine
 
         private void Awake()
         {
-            _isOn = _startOn;
+            if (_startOn)
+            {
+                turnOn();
+            }
+            else
+            {
+                turnOff();
+            }
         }
 
         private void Update()
