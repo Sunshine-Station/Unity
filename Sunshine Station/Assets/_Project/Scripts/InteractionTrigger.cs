@@ -4,7 +4,6 @@ using UnityEngine.Events;
 
 namespace Sunshine
 {
-    [RequireComponent(typeof(Collider))]
     public class InteractionTrigger : MonoBehaviour, IInteractable
     {
         [Header("Events")]
