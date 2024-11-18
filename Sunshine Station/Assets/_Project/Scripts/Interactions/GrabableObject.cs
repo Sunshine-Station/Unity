@@ -6,7 +6,6 @@ namespace Sunshine
 {
     public class GrabableObject : MonoBehaviour
     {
-        [SerializeField] bool printErrors;
         [SerializeField] float cooldownTime;
 
         private GrabState state;
@@ -34,18 +33,12 @@ namespace Sunshine
             isCooldown = false;
         }
 
-        public bool TryHover()
+        protected bool tryHover(out string errorMsg)
         {
-            bool result = false;
-            string errorMsg = "";
             if (isCooldown)
             {
                 errorMsg = $"{name} is on cooldown and its state can't be changed";
-                if (printErrors)
-                {
-                    Debug.LogWarning(errorMsg);
-                    return result;
-                }
+                return false;
             }
 
             switch (state)
@@ -54,50 +47,37 @@ namespace Sunshine
                 case GrabState.UNTOUCHED:
 
                     errorMsg = "";
-                    result = true;
-                    break;
+                    state = GrabState.HOVER;
+                    return true;
 
 
                 case GrabState.HOVER:
 
                     errorMsg = $"{name} is already being targeted.";
-                    break;
+                    return false;
 
 
                 case GrabState.HELD:
 
                     errorMsg = $"{name} is already being held.";
-                    break;
+                    return false;
 
 
                 case GrabState.DROPPED:
 
                     errorMsg = $"";
-                    result = true;
-                    break;
+                    state = GrabState.HOVER;
+                    return true;
             }
-
-            if (printErrors)
-            {
-                Debug.LogWarning(errorMsg);
-            }
-
-            return result;
         }
 
 
-        public bool TryHold()
+        protected bool tryHold(out string errorMsg)
         {
-            bool result = false;
-            string errorMsg = "";
             if (isCooldown)
             {
                 errorMsg = $"{name} is on cooldown and its state can't be changed";
-                if (printErrors)
-                {
-                    Debug.LogWarning(errorMsg);
-                    return result;
-                }
+                return false;
             }
 
             switch (state)
@@ -106,50 +86,36 @@ namespace Sunshine
                 case GrabState.UNTOUCHED:
 
                     errorMsg = $"{name} is NOT being targeted.";
-                    break;
+                    return false;
 
 
                 case GrabState.HOVER:
 
                     errorMsg = "";
-                    result = true;
-                    break;
+                    state = GrabState.HELD;
+                    return true;
 
 
                 case GrabState.HELD:
 
                     errorMsg = $"{name} is already being held.";
-                    break;
+                    return false;
 
 
                 case GrabState.DROPPED:
 
                     errorMsg = $"{name} is NOT being targeted.";
-                    break;
+                    return false;
             }
-
-            if (printErrors)
-            {   
-                Debug.LogWarning(errorMsg);
-            }
-
-            return result;
-
         }
 
 
-        public bool TryDrop()
+        protected bool tryDrop(out string errorMsg)
         {
-            bool result = false;
-            string errorMsg = "";
             if (isCooldown)
             {
                 errorMsg = $"{name} is on cooldown and its state can't be changed";
-                if (printErrors)
-                {
-                    Debug.LogWarning(errorMsg);
-                    return result;
-                }
+                return false;
             }
 
             switch (state)
@@ -160,7 +126,7 @@ namespace Sunshine
                     errorMsg = $"{name} is trying to get dropped," +
                                         $" but it NOT being held.";
 
-                    break;
+                    return false;
 
 
                 case GrabState.HOVER:
@@ -168,29 +134,22 @@ namespace Sunshine
                     errorMsg = $"{name} is trying to get dropped," +
                                         $" but it NOT being held.";
 
-                    break;
+                    return false;
 
 
                 case GrabState.HELD:
 
                     errorMsg = "";
-                    result = true;
-                    break;
+                    state = GrabState.DROPPED;
+                    return true;
 
 
                 case GrabState.DROPPED:
 
                     errorMsg = $"{name} is trying to get dropped," +
                                         $" but it NOT being held.";
-                    break;
+                    return false;
             }
-
-            if (printErrors)
-            {       
-                Debug.LogWarning(errorMsg);
-            }
-
-            return result;
         }
     }
 }
