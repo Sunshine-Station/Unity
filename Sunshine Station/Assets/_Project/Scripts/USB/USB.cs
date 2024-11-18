@@ -43,25 +43,43 @@ namespace Sunshine
 
         public void Hover()
         {
-            if (!tryHover(out string error))
+            if (!tryHoverStart(out string hoverError))
             {
-                Debug.LogWarning(error);
+                Debug.LogWarning(hoverError);
+            }
+        }
+
+        public void UnHover()
+        {
+            if (!tryHoverStop(out string unhoverError))
+            {
+                Debug.LogWarning(unhoverError);
             }
         }
 
         public void Grab()
         {
-            if (!tryHold(out string error))
+            if (!tryGrab(out string grabError))
             {
-                Debug.LogWarning(error);
+                Debug.LogWarning(grabError);
+            }
+
+            if (!tryStartCooldown(out string cooldownError))
+            {
+                Debug.LogWarning(cooldownError);
             }
         }
 
         public void Drop()
         {
-            if (!tryDrop(out string error))
+            if (!tryDrop(out string dropError))
             {
-                Debug.LogWarning(error);
+                Debug.LogWarning(dropError);
+            }
+
+            if (!tryStartCooldown(out string cooldownError))
+            {
+                Debug.LogWarning(cooldownError);
             }
         }
     }

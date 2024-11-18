@@ -8,21 +8,23 @@ namespace Sunshine
     {
         [SerializeField] float cooldownTime;
 
-        private GrabState state;
+        private GrabState currentState;
+        private GrabState previousState;
+
         private bool isCooldown;
 
-        public GrabState State { get { return state; } }
+        public GrabState State { get { return currentState; } }
 
         void Start()
         {
-            state = GrabState.UNTOUCHED;
+            currentState = GrabState.UNTOUCHED;
         }
 
-        private IEnumerator cooldown()
+        private IEnumerator cooldown(float duration)
         {
             isCooldown = true;
 
-            float timeRemaining = cooldownTime;
+            float timeRemaining = duration;
 
             while (timeRemaining > 0)
             {
@@ -33,78 +35,189 @@ namespace Sunshine
             isCooldown = false;
         }
 
-        protected bool tryHover(out string errorMsg)
+        /// <summary>
+        /// Starts a cooldown timer with a
+        /// duration value set in the inspector.
+        /// </summary>
+        protected bool tryStartCooldown(out string errorMsg)
         {
             if (isCooldown)
             {
-                errorMsg = $"{name} is on cooldown and its state can't be changed";
+                errorMsg = $"{name} is already on cooldown.";
                 return false;
             }
 
-            switch (state)
+            errorMsg = "";
+            StartCoroutine(cooldown(cooldownTime));
+            return true;
+        }
+
+        /// <summary>
+        /// Starts a cooldown timer with a duration
+        /// as specified in the function args.
+        /// </summary>
+        protected bool tryCooldownStart(float duration, out string errorMsg)
+        {
+            if (isCooldown)
+            {
+                errorMsg = $"{name} is already on cooldown.";
+                return false;
+            }
+
+            errorMsg = "";
+            StartCoroutine(cooldown(duration));
+            return true;
+        }
+
+        /// <summary>
+        /// Tries to set the Object's state to hover.
+        /// Returns a bool representing the success of the action,
+        /// and an out string containing a string with the reason
+        /// why (if any) the function failed.
+
+        protected bool tryHoverStart(out string errorMsg)
+        {
+            if (isCooldown)
+            {
+                errorMsg =  $"{name} is on cooldown and " +
+                            $"its state can't be changed";
+
+                return false;
+            }
+
+            switch (currentState)
             {
                 default:
                 case GrabState.UNTOUCHED:
 
                     errorMsg = "";
-                    state = GrabState.HOVER;
+
+                    previousState = currentState;
+                    currentState = GrabState.HOVER;
+
                     return true;
 
 
                 case GrabState.HOVER:
 
-                    errorMsg = $"{name} is already being targeted.";
-                    return false;
+                    errorMsg =  $"Can't hover over {name} because " +
+                                $"there is already something " +
+                                $"hovering over it.";
+
+                    return true;
 
 
                 case GrabState.HELD:
 
-                    errorMsg = $"{name} is already being held.";
+                    errorMsg =  $"Can't hover over {name} because " +
+                                $"it is already being held.";
+
                     return false;
 
 
                 case GrabState.DROPPED:
 
                     errorMsg = $"";
-                    state = GrabState.HOVER;
+
+                    previousState = currentState;
+                    currentState = GrabState.HOVER;
+
                     return true;
             }
         }
 
-
-        protected bool tryHold(out string errorMsg)
+        /// <summary>
+        /// Tries to set the Object's state to hover.
+        /// Returns a bool representing the success of the action,
+        /// and an out string containing a string with the reason
+        /// why (if any) the function failed.
+        protected bool tryHoverStop(out string errorMsg)
         {
-            if (isCooldown)
-            {
-                errorMsg = $"{name} is on cooldown and its state can't be changed";
-                return false;
-            }
-
-            switch (state)
+            switch (currentState)
             {
                 default:
                 case GrabState.UNTOUCHED:
 
-                    errorMsg = $"{name} is NOT being targeted.";
+                    errorMsg =  $"Can't stop hovering over {name} " +
+                                $"because there is already" +
+                                $"nothing hovering over it.";
+
                     return false;
 
 
                 case GrabState.HOVER:
 
                     errorMsg = "";
-                    state = GrabState.HELD;
+
+                    // Swap states
+                    GrabState buffer = currentState;
+                    currentState = previousState;
+                    previousState = buffer;
                     return true;
 
 
                 case GrabState.HELD:
 
-                    errorMsg = $"{name} is already being held.";
+                    errorMsg =  $"Can't stop hovering over {name}" +
+                                $"because it is being held.";
+
                     return false;
 
 
                 case GrabState.DROPPED:
 
-                    errorMsg = $"{name} is NOT being targeted.";
+                    errorMsg =  $"Can't stop hovering over {name} " +
+                                $"because it has been droppeed; " +
+                                $"there is nothing hovering over it.";
+
+                    return false;
+            }
+        }
+
+
+        protected bool tryGrab(out string errorMsg)
+        {
+            if (isCooldown)
+            {
+                errorMsg =  $"{name} is on cooldown and " +
+                            $"its state can't be changed";
+
+                return false;
+            }
+
+            switch (currentState)
+            {
+                default:
+                case GrabState.UNTOUCHED:
+
+                    errorMsg =  $"Can't grab {name}, " +
+                                $"because there is nothing " +
+                                $"targeting it by hovering";
+
+                    return false;
+
+
+                case GrabState.HOVER:
+
+                    errorMsg = "";
+                    currentState = GrabState.HELD;
+                    return true;
+
+
+                case GrabState.HELD:
+
+                    errorMsg =  $"Can't grab {name}, " +
+                                $"because it is already being held.";
+
+                    return false;
+
+
+                case GrabState.DROPPED:
+
+                    errorMsg =  $"Can't grab {name}, " +
+                                $"because there is nothing " +
+                                $"targeting it by hovering";
+
                     return false;
             }
         }
@@ -114,25 +227,26 @@ namespace Sunshine
         {
             if (isCooldown)
             {
-                errorMsg = $"{name} is on cooldown and its state can't be changed";
+                errorMsg =  $"{name} is on cooldown and " +
+                            $"its state can't be changed";
                 return false;
             }
 
-            switch (state)
+            switch (currentState)
             {
                 default:
                 case GrabState.UNTOUCHED:
 
-                    errorMsg = $"{name} is trying to get dropped," +
-                                        $" but it NOT being held.";
+                    errorMsg =  $"{name} can't be dropped because " +
+                                $"it is not being held.";
 
                     return false;
 
 
                 case GrabState.HOVER:
 
-                    errorMsg = $"{name} is trying to get dropped," +
-                                        $" but it NOT being held.";
+                    errorMsg =  $"{name} can't be dropped because " +
+                                $"it is not being held.";
 
                     return false;
 
@@ -140,14 +254,15 @@ namespace Sunshine
                 case GrabState.HELD:
 
                     errorMsg = "";
-                    state = GrabState.DROPPED;
+                    previousState = currentState;
+                    currentState = GrabState.DROPPED;
                     return true;
 
 
                 case GrabState.DROPPED:
 
-                    errorMsg = $"{name} is trying to get dropped," +
-                                        $" but it NOT being held.";
+                    errorMsg =  $"{name} can't be dropped because " +
+                                $"it is not being held.";
                     return false;
             }
         }
