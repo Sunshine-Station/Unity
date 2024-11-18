@@ -1,21 +1,22 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sunshine
 {
     public class Game : Singleton<Game>
     {
-        private List<Singleton<MonoBehaviour>> _managers = new List<Singleton<MonoBehaviour>>();
+        [SerializeField] private GameObject player;
+        [SerializeField] private Camera playerView;
 
-        private void GetManagers()
+        public GameObject Player { get { return player; } }
+        public Camera PlayerView { get { return playerView; } }
+
+        protected override void Awake()
         {
-            _managers.Clear();
+            base.Awake();
 
-            Singleton<MonoBehaviour>[] mgrsInScene = FindObjectsOfType<Singleton<MonoBehaviour>>();
-
-            foreach (Singleton<MonoBehaviour> mgr in mgrsInScene)
+            if (player == null)
             {
-                _managers.Add(mgr);
+                player = GameObject.Find("PLAYER");
             }
         }
     }

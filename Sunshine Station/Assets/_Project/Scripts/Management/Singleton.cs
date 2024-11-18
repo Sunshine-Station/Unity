@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Sunshine
 {
-    public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+    public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static T _mgr;
 
         public static T MGR { get { return _mgr; } }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             if (_mgr != null)
             {
@@ -19,13 +19,6 @@ namespace Sunshine
             {
                 _mgr = this as T;
             }
-        }
-
-        private IEnumerator AddManagerToMasterList()
-        {
-            yield return new WaitUntil(() => Game.MGR != null);
-
-
         }
     }
 }
