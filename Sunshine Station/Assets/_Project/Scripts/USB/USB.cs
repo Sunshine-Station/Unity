@@ -6,6 +6,10 @@ namespace Sunshine
 {
     public class USB : GrabableObject
     {
+        [Header("Debug")]
+        [SerializeField] private bool printMessages;
+
+        [Header("Events")]
         public UnityEvent WhileUntouched;
         public UnityEvent WhileHover;
         public UnityEvent WhileHeld;
@@ -45,7 +49,7 @@ namespace Sunshine
         {
             if (!tryHoverStart(out string hoverError))
             {
-                Debug.LogWarning(hoverError);
+                if (printMessages) { Debug.LogWarning(hoverError); }
             }
         }
 
@@ -53,7 +57,7 @@ namespace Sunshine
         {
             if (!tryHoverStop(out string unhoverError))
             {
-                Debug.LogWarning(unhoverError);
+                if (printMessages) { Debug.LogWarning(unhoverError); }
             }
         }
 
@@ -61,12 +65,12 @@ namespace Sunshine
         {
             if (!tryGrab(out string grabError))
             {
-                Debug.LogWarning(grabError);
+                if (printMessages) { Debug.LogWarning(grabError); }
             }
 
             if (!tryStartCooldown(out string cooldownError))
             {
-                Debug.LogWarning(cooldownError);
+                if (printMessages) { Debug.LogWarning(cooldownError); }
             }
         }
 
@@ -74,12 +78,12 @@ namespace Sunshine
         {
             if (!tryDrop(out string dropError))
             {
-                Debug.LogWarning(dropError);
+                if (printMessages) { Debug.LogWarning(dropError); }
             }
 
             if (!tryStartCooldown(out string cooldownError))
             {
-                Debug.LogWarning(cooldownError);
+                if (printMessages) { Debug.LogWarning(cooldownError); }
             }
         }
     }
