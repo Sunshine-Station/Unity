@@ -26,12 +26,39 @@ namespace Sunshine
 
 
         #region PRIVATE VARS
+        // ============================================
+
+        [Space(10)]
+        [SerializeField] private DataTerminal nearbyTerminal;
 
         [Header("Sun Data")]
         [SerializeField] private SunData defaultSunData;
         [SerializeField] private List<SunData> collectedData = new List<SunData>();
 
         #endregion // PRIVATE VARS ====================
+
+        #region PROPERTIES
+        // ============================================
+
+        public bool IsNearTerminal
+        {
+            get
+            {
+                bool terminalStored = (nearbyTerminal != null);
+
+                string isOrIsNot = terminalStored ? "IS." : "is NOT";
+
+                if (printMessages)
+                {
+                    Debug.Log($"{this} on {name} is reading IsNearTerminal, and it {isOrIsNot} ");
+                }
+
+                return terminalStored;
+            }
+        }
+
+        // ============================================
+        #endregion // PROPERTIES
 
 
         #region UNITY
@@ -119,8 +146,14 @@ namespace Sunshine
 
 
         #region DATA COLLECTION
+        // ============================================
 
-        public void InsertIntoTerminal()
+        public void OnInserted(DataTerminal terminal)
+        {
+            nearbyTerminal = terminal;
+        }
+
+        public void Download(SunData sunData)
         {
 
         }
