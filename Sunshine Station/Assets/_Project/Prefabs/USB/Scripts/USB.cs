@@ -1,19 +1,41 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Sunshine.GlobalEnums;
+using System.Collections.Generic;
 
 namespace Sunshine
 {
+    // Unfinished
+    // --layla
     public class USB : GrabableObject
     {
         [Header("Debug")]
         [SerializeField] private bool printMessages;
+
+
+        #region EVENTS
+        // ============================================
 
         [Header("Events")]
         public UnityEvent WhileUntouched;
         public UnityEvent WhileHover;
         public UnityEvent WhileHeld;
         public UnityEvent WhileDropped;
+
+        #endregion // EVENTS ==========================
+
+
+        #region PRIVATE VARS
+
+        [Header("Sun Data")]
+        [SerializeField] private SunData defaultSunData;
+        [SerializeField] private List<SunData> collectedData = new List<SunData>();
+
+        #endregion // PRIVATE VARS ====================
+
+
+        #region UNITY
+        // ============================================
 
         private void Update()
         {
@@ -44,6 +66,12 @@ namespace Sunshine
                     break;
             }
         }
+
+        #endregion // UNITY ===========================
+
+
+        #region GRAB
+        // ============================================
 
         public void Hover()
         {
@@ -86,5 +114,17 @@ namespace Sunshine
                 if (printMessages) { Debug.LogWarning(cooldownError); }
             }
         }
+
+        #endregion // GRAB ============================
+
+
+        #region DATA COLLECTION
+
+        public void InsertIntoTerminal()
+        {
+
+        }
+
+        #endregion // DATA COLLECTION =================
     }
 }
