@@ -5,7 +5,7 @@ namespace Sunshine
 {
     // Completely unfinished
     // --layla
-    public class InfoScreen : MonoBehaviour
+    public class DataTerminal : MonoBehaviour
     {
         // Components
         [SerializeField] private Canvas canvas;
@@ -20,6 +20,7 @@ namespace Sunshine
 
         // Positioning Info
         [SerializeField] private Transform canvasSpawnPoint;
+        [SerializeField] private Transform usbRig;
         [SerializeField] private Transform usbSlotStart;
         [SerializeField] private Transform usbSlotEnd;
 
@@ -30,6 +31,14 @@ namespace Sunshine
                 currentDisplay = sunDatas[indexToDisplay];
                 canvas = Instantiate(currentDisplay.WorldSpaceCanvas, canvasSpawnPoint.position, Quaternion.identity, transform);
             }
+        }
+
+        public void Insert(USB usb)
+        {
+            usb.transform.parent = usbRig;
+            // start anim
+
+
         }
     }
 }
