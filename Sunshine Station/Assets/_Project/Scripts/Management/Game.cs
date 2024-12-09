@@ -19,5 +19,16 @@ namespace Sunshine
                 player = GameObject.Find("PLAYER");
             }
         }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!Application.isEditor)
+                {
+                    Application.Quit();
+                }
+            }
+        }
     }
 }

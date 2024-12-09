@@ -55525,9 +55525,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b34befe5d0cbb642bb5d09104a47160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useCustomControllerPositions: 0
-  leftControllerPos: {x: 0, y: 0, z: 0}
-  rightControllerPos: {x: 0, y: 0, z: 0}
+  useCustomControllerPositions: 1
+  leftControllerPos: {x: -0.5, y: -0.2, z: 0.75}
+  rightControllerPos: {x: 0.5, y: -0.2, z: 0.75}
   m_DeviceSimulatorActionAsset: {fileID: -944628639613478452, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
   m_ControllerActionAsset: {fileID: -944628639613478452, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
   m_KeyboardXTranslateAction: {fileID: -2435995061748527091, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
