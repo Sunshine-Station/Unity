@@ -51,8 +51,10 @@ namespace Sunshine
         /// </summary>
         private void TryInteract(InputAction.CallbackContext context)
         {
-            if (_storedInteractions == null) { return; }
-            if (_storedInteractions.Count == 0) { return; }
+            if (_storedInteractions == null) { Debug.Log("Stored Interactions is Null");return; }
+            if (_storedInteractions.Count == 0)
+            {
+                Debug.Log("Stored Interactions is 0"); return; }
 
             int lastIndex = _storedInteractions.Count - 1;
 
